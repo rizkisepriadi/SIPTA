@@ -85,7 +85,7 @@ export default function FormTA() {
                 disabled
                 readOnly
             />
-            <InputLabel htmlFor="dospem" value="Dospem" />
+            <InputLabel htmlFor="dospem" value="Dosen Pembimbing" />
             <TextInput
                 id="dospem"
                 type="text"
