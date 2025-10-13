@@ -14,29 +14,30 @@ export default function UploadAvatar() {
         setImagedata(selectedImage); 
         setImagePreview(URL.createObjectURL(selectedImage));
     };
-
+    
     const submit = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("image", imagedata);
-
+        
         axios
-            .post(route("avatar.store"), formData)
-            .then((response) => {
-                setSuccessMessage("Berhasil di upload");
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+        .post(route("avatar.store"), formData)
+        .then((response) => {
+            setSuccessMessage("Berhasil di upload");
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error)
+        });
     };
-
+    
     const handleCloseSuccess = () => {
         setSuccessMessage("");
     };
-
+    
     return (
         <div className="flex flex-col items-center justify-center bg-base-100 relative shadow-lg px-24 pt-0 pb-9 mt-7 ml-24 gap-5 rounded-lg w-[590px] h-[400px] mb-52">
+            {successMessage && <Alert message={successMessage} onClose={handleCloseSuccess}  />}
             <h1 className="text-center font-bold text-xl">Ganti Profil</h1>
             <form
                 onSubmit={submit}
@@ -59,8 +60,7 @@ export default function UploadAvatar() {
                         name="image"
                         value={imagedata.image}
                         onChange={handleChange}
-                        className="file-input file-input-sm file-input-secondary pl-0
-                        file-input-bordered w-full mt-10 ml-2 max-w-xs"
+                        className="file-input file-input-sm file-input-secondary file-input-bordered w-full mt-10 ml-2 max-w-xs pl-0"
                     />
                 </div>
                 <button
@@ -70,7 +70,6 @@ export default function UploadAvatar() {
                     Simpan
                 </button>
             </form>
-            {successMessage && <Alert message={successMessage} onClose={handleCloseSuccess}  />}
         </div>
     );
 }

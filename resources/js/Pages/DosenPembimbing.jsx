@@ -5,7 +5,7 @@ import DosenCard from "@/Components/DosenCard";
 import { Head, useForm, usePage } from "@inertiajs/react";
 
 export default function DosenPembimbing({auth}) {
-    console.log(usePage().props);
+    // console.log(usePage().props);
     const { dosens } = usePage().props; // Akses 'dosens' dari properti halaman
     const bidangArray = dosens.map((dosen) => dosen.bidang.split(",").map((item) => item.trim()));
 

@@ -44,10 +44,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                 <TextInput
                     id="nim"
                     value={data.nim}
-                    onChange={(e) => setData("nim", e.target.value)}
-                    required
-                    isFocused
-                    autoComplete="nim"
+                    disabled
+                    readOnly
                     className="mt-1 block w-[650px]"
                 />
                 <InputError className="mt-2" message={errors.nim} />
@@ -56,10 +54,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                 <TextInput
                     id="name"
                     value={data.name}
-                    onChange={(e) => setData("name", e.target.value)}
-                    required
-                    isFocused
-                    autoComplete="name"
+                    disabled
+                    readOnly
                     className="mt-1 block w-[650px]"
                 />
                 <InputError className="mt-2" message={errors.name} />
@@ -71,9 +67,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                 <TextInput
                     id="dospem"
                     value={data.dospem}
-                    onChange={(e) => setData("dospem", e.target.value)}
-                    required
-                    isFocused
+                    disabled
+                    readOnly
                     autoComplete="dospem"
                     className="mt-1 block w-[650px]"
                 />
@@ -85,7 +80,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.alamat}
                     onChange={(e) => setData("alamat", e.target.value)}
                     required
-                    isFocused
                     autoComplete="alamat"
                     className="mt-1 block w-[650px]"
                 />
@@ -97,7 +91,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.telp}
                     onChange={(e) => setData("telp", e.target.value)}
                     required
-                    isFocused
                     autoComplete="telp"
                     className="mt-1 block w-[650px]"
                 />
@@ -109,7 +102,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.tempatlahir}
                     onChange={(e) => setData("tempatlahir", e.target.value)}
                     required
-                    isFocused
                     autoComplete="tempatlahir"
                     className="mt-1 block w-[650px]"
                 />
@@ -121,7 +113,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.tanggallahir}
                     onChange={(e) => setData("tanggallahir", e.target.value)}
                     required
-                    isFocused
                     autoComplete="tanggallahir"
                     className="mt-1 block w-[650px]"
                 />
@@ -133,7 +124,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.jeniskelamin}
                     onChange={(e) => setData("jeniskelamin", e.target.value)}
                     required
-                    isFocused
                     autoComplete="jeniskelamin"
                     className="mt-1 block w-[650px]"
                 />
@@ -145,7 +135,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.kewarganegaraan}
                     onChange={(e) => setData("kewarganegaraan", e.target.value)}
                     required
-                    isFocused
                     autoComplete="kewarganegaraan"
                     className="mt-1 block w-[650px]"
                 />
@@ -157,7 +146,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     value={data.agama}
                     onChange={(e) => setData("agama", e.target.value)}
                     required
-                    isFocused
                     autoComplete="agama"
                     className="mt-1 block w-[650px]"
                 />
@@ -174,8 +162,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
                     type="email"
                     className="mt-1 block w-full"
                     value={data.email}
-                    onChange={(e) => setData("email", e.target.value)}
-                    required
+                    isFocused
+                    disabled
+                    readOnly
                     autoComplete="username"
                 />
 

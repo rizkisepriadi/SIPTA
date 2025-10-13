@@ -11,33 +11,52 @@ export default function FormTA() {
         title: "",
         topik: "",
         excerpt: "",
-        penulis: "",
+        // penulis: "", // HAPUS ini - tidak ada di validasi backend
         nim: user.nim,
         dospem: user.dospem,
         jurusan: "",
         tahunajaran: "",
-        laporan: "",
+        laporan: null, // Ubah dari "" ke null untuk file
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+        const { name, value, files } = e.target;
+
+        if (name === "laporan" && files) {
+            setData((prevData) => ({
+                ...prevData,
+                [name]: files[0],
+            }));
+        } else {
+            setData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
+        }
     };
 
     const submit = (e) => {
         e.preventDefault();
 
-        axios
-        .post(route("tugasakhir.store"), data) // Mengirim data formulir ke rute tugasakhir.store
-        .then((response) => {
-            console.log(response.data); // Lakukan penanganan respons yang sesuai
-        })
-        .catch((error) => {
-            console.error(error); // Lakukan penanganan kesalahan yang sesuai
+        const formData = new FormData();
+        Object.keys(data).forEach((key) => {
+            if (data[key] !== null && data[key] !== "") {
+                formData.append(key, data[key]);
+            }
         });
+
+        axios
+            .post(route("tugasakhir.store"), formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     return (
@@ -85,7 +104,7 @@ export default function FormTA() {
                 disabled
                 readOnly
             />
-            <InputLabel htmlFor="dospem" value="Dospem" />
+            <InputLabel htmlFor="dospem" value="Dosen Pembimbing" />
             <TextInput
                 id="dospem"
                 type="text"
@@ -115,11 +134,10 @@ export default function FormTA() {
                 className="mt-1 block w-[950px]"
             />
             <InputLabel htmlFor="laporan" value="File" />
-            <TextInput
+            <input
                 type="file"
                 id="laporan"
                 name="laporan"
-                value={data.laporan}
                 onChange={handleChange}
                 className="file-input file-input-sm file-input-secondary
                         file-input-bordered w-full max-w-xs pl-0"
